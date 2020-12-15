@@ -22,9 +22,9 @@ import org.apache.kafka.common.annotation.InterfaceStability;
 import java.util.Map;
 
 /**
- * Describe records to delete in a call to {@link AdminClient#deleteRecords(Map)}
+ * Describe records to delete in a call to {@link Admin#deleteRecords(Map)}
  *
- * The API of this class is evolving, see {@link AdminClient} for details.
+ * The API of this class is evolving, see {@link Admin} for details.
  */
 @InterfaceStability.Evolving
 public class RecordsToDelete {
@@ -49,6 +49,21 @@ public class RecordsToDelete {
      */
     public long beforeOffset() {
         return offset;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RecordsToDelete that = (RecordsToDelete) o;
+
+        return this.offset == that.offset;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) offset;
     }
 
     @Override
